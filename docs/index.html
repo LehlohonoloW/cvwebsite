@@ -3,1220 +3,2145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lehlohonolo Wessie - Backend Developer</title>
+    <meta name="description" content="Lehlohonolo Wessie - Backend Developer, co-founder of Lehro Solutions, and builder of open-source business automation tools.">
+    <meta name="theme-color" content="#071513">
+    <title>Lehlohonolo Wessie | Backend Developer & Lehro Solutions Co-Founder</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap');
-        
+        @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
         :root {
-            --black: #0b0f14;
-            --gray-900: #0f141c;
-            --gray-800: #151c26;
-            --gray-700: #212b36;
-            --gray-600: #2f3b4a;
-            --gray-400: #94a3b8;
-            --gray-300: #cbd5e1;
-            --white: #f8fafc;
-            
-            /* Accent Palette */
-            --pastel-blue: #2de2e6;
-            --pastel-purple: #ff7a59;
-            --pastel-pink: #ffd166;
-            --pastel-green: #7bd88f;
-            --pastel-yellow: #f4f1bb;
-            --pastel-orange: #ffb347;
-            
-            /* Accent Colors */
-            --accent-blue: #00c2ff;
-            --accent-purple: #ff6b6b;
-            --accent-pink: #ffa69e;
-            --accent-green: #21d19f;
+            --bg: #071513;
+            --bg-2: #0b1d1a;
+            --panel: rgba(13, 31, 29, 0.78);
+            --panel-solid: #0d1f1d;
+            --panel-soft: rgba(239, 230, 214, 0.06);
+            --text: #f7f0e7;
+            --muted: #aabbb4;
+            --subtle: #738984;
+            --line: rgba(247, 240, 231, 0.13);
+            --line-strong: rgba(247, 240, 231, 0.25);
+            --teal: #0f756f;
+            --teal-bright: #55cabc;
+            --copper: #c8761f;
+            --copper-soft: #f0b35e;
+            --paper: #f4efe7;
+            --charcoal: #121819;
+            --danger: #d66555;
+            --radius: 8px;
+            --shadow: 0 22px 70px rgba(0, 0, 0, 0.32);
+            --font-display: "Sora", "Space Grotesk", sans-serif;
+            --font-body: "Space Grotesk", "Segoe UI", sans-serif;
+            --font-mono: "IBM Plex Mono", "Cascadia Mono", monospace;
         }
 
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--black);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background:
-                radial-gradient(1200px 600px at 10% 10%, rgba(45, 226, 230, 0.12), transparent 60%),
-                radial-gradient(900px 500px at 90% 20%, rgba(255, 122, 89, 0.16), transparent 60%),
-                radial-gradient(700px 500px at 50% 80%, rgba(255, 209, 102, 0.1), transparent 60%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Navigation */
-        .navbar {
+        body {
+            margin: 0;
+            min-height: 100dvh;
+            overflow-x: hidden;
+            background:
+                radial-gradient(circle at 14% 12%, rgba(85, 202, 188, 0.18), transparent 28rem),
+                radial-gradient(circle at 88% 0%, rgba(200, 118, 31, 0.2), transparent 32rem),
+                linear-gradient(135deg, #071513 0%, #0a1718 45%, #10110f 100%);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.55;
+        }
+
+        body::before {
+            content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(11, 15, 20, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--gray-700);
-            padding: 1rem 0;
-            transition: all 0.3s ease;
+            inset: 0;
+            z-index: -3;
+            background-image:
+                linear-gradient(rgba(247, 240, 231, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(247, 240, 231, 0.035) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.2));
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 20;
+            opacity: 0.18;
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.15) 0 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0 1px, transparent 1px);
+            background-size: 5px 5px, 7px 7px;
+            mix-blend-mode: soft-light;
         }
 
-        .logo {
-            font-family: 'IBM Plex Mono', monospace;
-            font-weight: 600;
-            font-size: 1.3rem;
-            letter-spacing: 0.08em;
-            color: var(--pastel-blue);
-            text-decoration: none;
+        a {
+            color: inherit;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
+        img,
+        svg {
+            display: block;
         }
 
-        .nav-links a {
-            color: var(--gray-300);
-            text-decoration: none;
-            font-weight: 400;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a::after {
-            content: '';
+        .sr-only {
             position: absolute;
-            bottom: 0;
-            left: 0;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .skip-link {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 30;
+            transform: translateY(-160%);
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius);
+            background: var(--paper);
+            color: var(--charcoal);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .icon-sprite {
+            position: absolute;
             width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--pastel-blue), var(--pastel-pink));
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: var(--white);
-        }
-
-        /* Sections */
-        .section {
-            min-height: 100vh;
-            padding: 6rem 2rem 4rem;
-            position: relative;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Home Section */
-        .home {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .geometric-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
+            height: 0;
             overflow: hidden;
         }
 
-        .geometric-shape {
-            position: absolute;
-            border: 1px solid var(--pastel-purple);
-            animation: float 20s ease-in-out infinite;
+        .icon {
+            width: 1.15rem;
+            height: 1.15rem;
+            flex: 0 0 auto;
+            stroke-width: 1.8;
         }
 
-        .shape-1 {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            top: 20%;
-            left: 10%;
-            border-color: var(--pastel-blue);
+        .shell {
+            position: relative;
+            isolation: isolate;
         }
 
-        .shape-2 {
-            width: 150px;
-            height: 150px;
-            top: 60%;
-            right: 15%;
-            transform: rotate(45deg);
-            border-color: var(--pastel-pink);
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 15;
+            border-bottom: 1px solid rgba(247, 240, 231, 0.1);
+            background: rgba(7, 21, 19, 0.78);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
         }
 
-        .shape-3 {
-            width: 100px;
-            height: 100px;
-            bottom: 20%;
-            left: 80%;
-            border-radius: 20px;
-            border-color: var(--pastel-green);
+        .nav {
+            width: min(1420px, calc(100% - 32px));
+            margin: 0 auto;
+            min-height: 76px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 1rem;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(120deg); }
-            66% { transform: translateY(-40px) rotate(240deg); }
-        }
-
-        .hero-content {
-            z-index: 2;
-            max-width: 900px;
-        }
-
-        .status-badge {
+        .brand {
             display: inline-flex;
             align-items: center;
-            gap: 0.6rem;
-            background: linear-gradient(90deg, rgba(45, 226, 230, 0.15), rgba(255, 122, 89, 0.2));
-            color: var(--white);
-            padding: 0.6rem 1.4rem;
-            border-radius: 999px;
-            border: 1px solid rgba(45, 226, 230, 0.4);
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
+            gap: 0.75rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            width: 2.55rem;
+            height: 2.55rem;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(85, 202, 188, 0.38);
+            border-radius: var(--radius);
+            background:
+                linear-gradient(135deg, rgba(85, 202, 188, 0.16), rgba(200, 118, 31, 0.14)),
+                rgba(13, 31, 29, 0.92);
+            color: var(--teal-bright);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .brand-text {
+            display: grid;
+            gap: 0.05rem;
+        }
+
+        .brand-name {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+        }
+
+        .brand-role {
+            color: var(--subtle);
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .nav-links {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.25rem;
+            list-style: none;
+            margin: 0;
+            padding: 0.35rem;
+            border: 1px solid rgba(247, 240, 231, 0.1);
+            border-radius: 999px;
+            background: rgba(244, 239, 231, 0.045);
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.42rem;
+            min-height: 2.25rem;
+            padding: 0 0.78rem;
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 0.86rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible,
+        .nav-links a.is-active {
+            color: var(--text);
+            background: rgba(85, 202, 188, 0.12);
+            transform: translateY(-1px);
+            outline: none;
+        }
+
+        .nav-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            min-height: 2.55rem;
+            padding: 0 0.9rem;
+            border: 1px solid rgba(240, 179, 94, 0.34);
+            border-radius: var(--radius);
+            background: rgba(240, 179, 94, 0.08);
+            color: var(--paper);
+            font-weight: 800;
+            text-decoration: none;
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+
+        .nav-action:hover,
+        .nav-action:focus-visible {
+            transform: translateY(-1px);
+            border-color: rgba(240, 179, 94, 0.64);
+            background: rgba(240, 179, 94, 0.14);
+            outline: none;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            width: min(1420px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 6.5rem 0;
+        }
+
+        .hero {
+            width: min(1420px, calc(100% - 32px));
+            min-height: calc(100dvh - 76px);
+            margin: 0 auto;
+            padding: 4rem 0 5rem;
+            display: grid;
+            grid-template-columns: minmax(0, 0.92fr) minmax(420px, 1.08fr);
+            align-items: center;
+            gap: clamp(2rem, 5vw, 5.5rem);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            width: fit-content;
+            margin: 0 0 1.25rem;
+            padding: 0.45rem 0.68rem;
+            border: 1px solid rgba(85, 202, 188, 0.28);
+            border-radius: 999px;
+            background: rgba(85, 202, 188, 0.08);
+            color: var(--teal-bright);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .pulse-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 999px;
+            background: var(--teal-bright);
+            box-shadow: 0 0 0 0 rgba(85, 202, 188, 0.45);
+            animation: pulse-ring 2200ms ease-out infinite;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+            overflow-wrap: break-word;
+        }
+
+        .hero > *,
+        .section > *,
+        .story-grid > *,
+        .projects-layout > *,
+        .skills-board > *,
+        .credentials-grid > *,
+        .contact-grid > * {
+            min-width: 0;
         }
 
         .hero-title {
-            font-family: 'Sora', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
+            max-width: 11ch;
+            margin-bottom: 1.35rem;
+            font-family: var(--font-display);
+            font-size: clamp(3.2rem, 6.2vw, 6.2rem);
+            line-height: 0.9;
+            letter-spacing: -0.045em;
+        }
+
+        .hero-title span {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(247, 240, 231, 0.72);
+            text-stroke: 1px rgba(247, 240, 231, 0.72);
+        }
+
+        .hero-copy {
+            max-width: 63ch;
+            color: var(--muted);
+            font-size: clamp(1rem, 1.3vw, 1.16rem);
+        }
+
+        .hero-copy strong {
+            color: var(--text);
             font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--white), var(--pastel-blue), var(--pastel-pink));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
         }
 
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            color: var(--gray-300);
-            margin-bottom: 1rem;
-            font-weight: 400;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            color: var(--gray-400);
-            margin-bottom: 2rem;
-            max-width: 680px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .focus-pills {
+        .hero-actions {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 0.8rem;
-            margin-bottom: 2.5rem;
+            margin-top: 1.8rem;
         }
 
-        .focus-pill {
-            padding: 0.4rem 0.9rem;
-            border-radius: 999px;
-            border: 1px solid var(--gray-700);
-            background: rgba(21, 28, 38, 0.7);
-            color: var(--gray-300);
-            font-size: 0.85rem;
-            letter-spacing: 0.02em;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
+        .button {
+            --mx: 0px;
+            --my: 0px;
             position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            min-height: 3.1rem;
+            padding: 0 1.08rem;
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-weight: 800;
+            text-decoration: none;
+            overflow: hidden;
+            isolation: isolate;
+            transform: translate3d(var(--mx), var(--my), 0);
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+
+        .button::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(255, 255, 255, 0.2), transparent 44%);
+            opacity: 0;
+            transition: opacity 180ms ease;
+        }
+
+        .button:hover::before,
+        .button:focus-visible::before {
+            opacity: 1;
+        }
+
+        .button:active {
+            transform: translate3d(var(--mx), calc(var(--my) + 1px), 0) scale(0.99);
+        }
+
+        .button:focus-visible {
+            outline: 2px solid rgba(85, 202, 188, 0.65);
+            outline-offset: 3px;
+        }
+
+        .button.primary {
+            border-color: rgba(240, 179, 94, 0.5);
+            background: linear-gradient(135deg, var(--paper), #e8c690 56%, #bc6c1e);
+            color: #161410;
+            box-shadow: 0 16px 44px rgba(200, 118, 31, 0.22);
+        }
+
+        .button.secondary {
+            background: rgba(244, 239, 231, 0.06);
+        }
+
+        .button.ghost {
+            min-height: 2.7rem;
+            padding-inline: 0.82rem;
+            background: transparent;
+            color: var(--muted);
+        }
+
+        .hero-meta {
+            margin-top: 2.2rem;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        .metric {
+            min-height: 7.2rem;
+            padding: 1rem;
+            border: 1px solid rgba(247, 240, 231, 0.12);
+            border-radius: var(--radius);
+            background: rgba(244, 239, 231, 0.045);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+        }
+
+        .metric-value {
+            display: block;
+            margin-bottom: 0.45rem;
+            color: var(--paper);
+            font-family: var(--font-mono);
+            font-size: clamp(1.3rem, 2vw, 2rem);
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .metric-label {
+            color: var(--subtle);
+            font-size: 0.85rem;
+        }
+
+        .system-panel {
+            position: relative;
+            min-height: 640px;
+            border: 1px solid rgba(247, 240, 231, 0.14);
+            border-radius: var(--radius);
+            background:
+                linear-gradient(135deg, rgba(247, 240, 231, 0.08), rgba(247, 240, 231, 0.015)),
+                rgba(13, 31, 29, 0.72);
+            box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.07);
             overflow: hidden;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--pastel-blue), var(--accent-blue));
-            color: #071018;
+        .system-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, transparent, rgba(85, 202, 188, 0.1), transparent),
+                repeating-linear-gradient(0deg, transparent 0 42px, rgba(247, 240, 231, 0.05) 43px);
+            transform: translateX(-54%);
+            animation: scanner 7400ms cubic-bezier(0.16, 1, 0.3, 1) infinite;
+            pointer-events: none;
         }
 
-        .btn-secondary {
-            background: rgba(21, 28, 38, 0.6);
-            color: var(--white);
-            border: 1px solid var(--gray-600);
+        .system-panel::after {
+            content: "";
+            position: absolute;
+            inset: auto 1rem 1rem 1rem;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(240, 179, 94, 0.7), transparent);
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
+        .system-topbar {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(247, 240, 231, 0.1);
         }
 
-        .btn-primary:hover {
-            box-shadow: 0 10px 30px rgba(74, 158, 255, 0.3);
+        .window-dots {
+            display: inline-flex;
+            gap: 0.42rem;
         }
 
-        .btn-secondary:hover {
-            border-color: var(--pastel-blue);
-            background: rgba(45, 226, 230, 0.1);
+        .window-dots span {
+            width: 0.62rem;
+            height: 0.62rem;
+            border-radius: 999px;
+            background: var(--line-strong);
         }
 
-        /* Section Headers */
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
+        .window-dots span:nth-child(1) {
+            background: #c66b55;
+        }
+
+        .window-dots span:nth-child(2) {
+            background: #d69a3a;
+        }
+
+        .window-dots span:nth-child(3) {
+            background: #48b7a8;
+        }
+
+        .system-status {
+            color: var(--subtle);
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .system-map {
+            position: relative;
+            z-index: 1;
+            min-height: 450px;
+            padding: 1rem;
+        }
+
+        .map-svg {
+            width: 100%;
+            height: 450px;
+        }
+
+        .map-line {
+            fill: none;
+            stroke: rgba(85, 202, 188, 0.42);
+            stroke-width: 1.3;
+            stroke-dasharray: 6 10;
+            animation: dash-flow 2400ms linear infinite;
+        }
+
+        .map-line.copper {
+            stroke: rgba(240, 179, 94, 0.54);
+            animation-duration: 3200ms;
+        }
+
+        .map-node {
+            fill: rgba(7, 21, 19, 0.9);
+            stroke: rgba(247, 240, 231, 0.28);
+            stroke-width: 1.2;
+        }
+
+        .map-node.core {
+            fill: rgba(85, 202, 188, 0.18);
+            stroke: rgba(85, 202, 188, 0.85);
+        }
+
+        .map-node.copper {
+            fill: rgba(200, 118, 31, 0.18);
+            stroke: rgba(240, 179, 94, 0.8);
+        }
+
+        .map-label {
+            fill: var(--paper);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .map-small {
+            fill: var(--muted);
+            font-family: var(--font-mono);
+            font-size: 9px;
+            letter-spacing: 0.06em;
+        }
+
+        .map-orbit {
+            transform-origin: 50% 50%;
+            animation: orbit 17000ms linear infinite;
+        }
+
+        .console-strip {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 0.8rem;
+            padding: 0 1rem 1rem;
+        }
+
+        .console-tile {
+            min-height: 116px;
+            padding: 0.95rem;
+            border: 1px solid rgba(247, 240, 231, 0.12);
+            border-radius: var(--radius);
+            background: rgba(7, 21, 19, 0.54);
+        }
+
+        .console-kicker {
+            color: var(--copper-soft);
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .console-title {
+            margin: 0.45rem 0 0.3rem;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            letter-spacing: -0.025em;
+        }
+
+        .console-copy {
+            margin: 0;
+            color: var(--subtle);
+            font-size: 0.86rem;
+        }
+
+        .section-heading {
+            display: grid;
+            grid-template-columns: minmax(0, 0.75fr) minmax(280px, 0.42fr);
+            align-items: end;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin-bottom: 0.85rem;
+            color: var(--copper-soft);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
         }
 
         .section-title {
-            font-family: 'Sora', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--white);
-            position: relative;
-            display: inline-block;
-            letter-spacing: -0.02em;
+            max-width: 13ch;
+            margin-bottom: 0;
+            font-family: var(--font-display);
+            font-size: clamp(2.1rem, 5vw, 5.45rem);
+            line-height: 0.94;
+            letter-spacing: -0.045em;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--pastel-blue), var(--pastel-pink));
-            border-radius: 2px;
+        .section-lede {
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.02rem;
         }
 
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--gray-400);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* About Section */
-        .about {
-            background: linear-gradient(180deg, rgba(15, 20, 28, 0.98), rgba(11, 15, 20, 1));
-        }
-
-        .about-grid {
+        .story-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            grid-template-columns: minmax(0, 0.72fr) minmax(340px, 0.28fr);
+            gap: 1rem;
         }
 
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--gray-300);
+        .story-panel,
+        .side-panel {
+            border: 1px solid rgba(247, 240, 231, 0.13);
+            border-radius: var(--radius);
+            background: rgba(13, 31, 29, 0.6);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
         }
 
-        .about-text p {
-            margin-bottom: 1.5rem;
+        .story-panel {
+            padding: clamp(1.3rem, 4vw, 3rem);
         }
 
-        .about-stats {
+        .story-panel p {
+            max-width: 78ch;
+            color: var(--muted);
+            font-size: clamp(1.02rem, 1.45vw, 1.28rem);
+        }
+
+        .story-panel p:last-child {
+            margin-bottom: 0;
+        }
+
+        .story-panel strong {
+            color: var(--paper);
+        }
+
+        .side-panel {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .stat-card {
-            background: rgba(21, 28, 38, 0.8);
-            border: 1px solid var(--gray-700);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
+            align-content: stretch;
             overflow: hidden;
-            box-shadow: 0 18px 40px rgba(4, 8, 12, 0.35);
         }
 
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--pastel-blue), var(--pastel-purple), var(--pastel-pink));
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gray-600);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--pastel-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--gray-400);
-            font-weight: 500;
-        }
-
-        /* Skills Section */
-        .skills-grid {
+        .side-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 2.8rem 1fr;
+            gap: 0.85rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(247, 240, 231, 0.1);
         }
 
-        .skill-category {
-            background: rgba(21, 28, 38, 0.85);
-            border: 1px solid var(--gray-700);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 18px 40px rgba(4, 8, 12, 0.35);
+        .side-row:last-child {
+            border-bottom: 0;
         }
 
-        .skill-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .side-icon {
+            width: 2.8rem;
+            height: 2.8rem;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(247, 240, 231, 0.14);
+            border-radius: var(--radius);
+            background: rgba(244, 239, 231, 0.055);
+            color: var(--teal-bright);
+        }
+
+        .side-row h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .side-row p {
+            margin: 0.22rem 0 0;
+            color: var(--subtle);
+            font-size: 0.88rem;
+        }
+
+        .marquee {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(184, 230, 255, 0.05), transparent);
-            transition: left 0.6s ease;
+            overflow: hidden;
+            border-block: 1px solid rgba(247, 240, 231, 0.12);
+            background: rgba(244, 239, 231, 0.04);
         }
 
-        .skill-category:hover::before {
-            left: 100%;
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            gap: 1rem;
+            padding: 0.9rem 0;
+            animation: marquee 28000ms linear infinite;
         }
 
-        .skill-category:hover {
-            transform: translateY(-5px);
-            border-color: var(--gray-600);
+        .marquee span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            color: var(--muted);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            white-space: nowrap;
         }
 
-        .skill-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+        .marquee span::before {
+            content: "";
+            width: 0.4rem;
+            height: 0.4rem;
+            border-radius: 999px;
+            background: var(--copper-soft);
         }
 
-        .skill-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--white);
+        .projects-layout {
+            display: grid;
+            grid-template-columns: minmax(280px, 0.33fr) minmax(0, 0.67fr);
+            gap: 1rem;
+            align-items: start;
         }
 
-        .skill-list {
+        .project-index {
+            position: sticky;
+            top: 96px;
+            padding: 1rem;
+            border: 1px solid rgba(247, 240, 231, 0.13);
+            border-radius: var(--radius);
+            background: rgba(13, 31, 29, 0.7);
+        }
+
+        .project-index h3 {
+            margin-bottom: 1rem;
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            letter-spacing: -0.025em;
+        }
+
+        .index-list {
+            display: grid;
+            gap: 0.55rem;
+        }
+
+        .index-chip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 0.68rem 0.72rem;
+            border: 1px solid rgba(247, 240, 231, 0.1);
+            border-radius: var(--radius);
+            background: rgba(244, 239, 231, 0.04);
+            color: var(--muted);
+            font-family: var(--font-mono);
+            font-size: 0.77rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            transition: transform 180ms ease, color 180ms ease, border-color 180ms ease, background 180ms ease;
+        }
+
+        .index-chip:hover,
+        .index-chip:focus-visible {
+            transform: translateX(4px);
+            color: var(--paper);
+            border-color: rgba(85, 202, 188, 0.32);
+            background: rgba(85, 202, 188, 0.09);
+            outline: none;
+        }
+
+        .index-chip span:last-child {
+            color: var(--copper-soft);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .project-card {
+            --spot-x: 50%;
+            --spot-y: 50%;
+            --rx: 0deg;
+            --ry: 0deg;
+            min-height: 290px;
+            grid-column: span 3;
+            position: relative;
+            display: grid;
+            align-content: space-between;
+            gap: 1.2rem;
+            padding: 1.2rem;
+            border: 1px solid rgba(247, 240, 231, 0.13);
+            border-radius: var(--radius);
+            background:
+                radial-gradient(circle at var(--spot-x) var(--spot-y), rgba(85, 202, 188, 0.16), transparent 17rem),
+                linear-gradient(145deg, rgba(244, 239, 231, 0.07), rgba(244, 239, 231, 0.02)),
+                rgba(13, 31, 29, 0.72);
+            color: var(--text);
+            text-decoration: none;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+            transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(0);
+            transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+            overflow: hidden;
+        }
+
+        .project-card:nth-child(1),
+        .project-card:nth-child(4) {
+            grid-column: span 4;
+        }
+
+        .project-card:nth-child(2),
+        .project-card:nth-child(5) {
+            grid-column: span 2;
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(85, 202, 188, 0.4), transparent 42%, rgba(240, 179, 94, 0.35));
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 220ms ease;
+            pointer-events: none;
+        }
+
+        .project-card:hover,
+        .project-card:focus-visible {
+            transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateY(-6px);
+            border-color: rgba(85, 202, 188, 0.32);
+            outline: none;
+        }
+
+        .project-card:hover::before,
+        .project-card:focus-visible::before {
+            opacity: 1;
+        }
+
+        .project-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .project-icon {
+            width: 3rem;
+            height: 3rem;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(247, 240, 231, 0.14);
+            border-radius: var(--radius);
+            background: rgba(7, 21, 19, 0.56);
+            color: var(--teal-bright);
+        }
+
+        .project-number {
+            color: rgba(247, 240, 231, 0.22);
+            font-family: var(--font-mono);
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .project-card h3 {
+            margin-bottom: 0.65rem;
+            font-family: var(--font-display);
+            font-size: clamp(1.35rem, 2vw, 2rem);
+            line-height: 1;
+            letter-spacing: -0.035em;
+        }
+
+        .project-card p {
+            margin-bottom: 1rem;
+            color: var(--muted);
+        }
+
+        .tag-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.8rem;
+            gap: 0.45rem;
         }
 
-        .skill-tag {
-            background: var(--gray-700);
-            border: 1px solid var(--gray-600);
-            color: var(--gray-300);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            min-height: 1.55rem;
+            padding: 0 0.55rem;
+            border: 1px solid rgba(247, 240, 231, 0.12);
+            border-radius: 999px;
+            background: rgba(244, 239, 231, 0.045);
+            color: var(--muted);
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
 
-        .skill-tag:hover {
-            background: var(--gray-600);
-            color: var(--white);
-            border-color: var(--pastel-blue);
+        .tag.open {
+            color: var(--teal-bright);
+            border-color: rgba(85, 202, 188, 0.32);
         }
 
-        /* Experience Section */
-        .experience {
-            background: linear-gradient(180deg, rgba(11, 15, 20, 1), rgba(15, 20, 28, 0.95));
+        .tag.release {
+            color: var(--copper-soft);
+            border-color: rgba(240, 179, 94, 0.32);
         }
 
         .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--pastel-blue), var(--pastel-purple));
-            transform: translateX(-50%);
+            display: grid;
+            gap: 0.85rem;
+            border-left: 1px solid rgba(247, 240, 231, 0.14);
+            margin-left: 0.65rem;
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 3rem;
-            width: 50%;
+            display: grid;
+            grid-template-columns: minmax(190px, 0.22fr) minmax(0, 0.78fr);
+            gap: 1rem;
+            padding: 0 0 1.7rem 1.4rem;
         }
 
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            padding-right: 3rem;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            padding-left: 3rem;
-        }
-
-        .timeline-content {
-            background: rgba(21, 28, 38, 0.85);
-            border: 1px solid var(--gray-700);
-            border-radius: 18px;
-            padding: 2rem;
-            position: relative;
-            transition: all 0.3s ease;
-            box-shadow: 0 16px 34px rgba(4, 8, 12, 0.35);
-        }
-
-        .timeline-content:hover {
-            transform: scale(1.02);
-            border-color: var(--gray-600);
-        }
-
-        .timeline-dot {
+        .timeline-item::before {
+            content: "";
             position: absolute;
-            top: 2rem;
-            width: 16px;
-            height: 16px;
-            background: var(--pastel-blue);
-            border: 4px solid var(--black);
-            border-radius: 50%;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-dot {
-            right: -58px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-dot {
-            left: -58px;
+            left: -0.43rem;
+            top: 0.2rem;
+            width: 0.82rem;
+            height: 0.82rem;
+            border: 2px solid var(--bg);
+            border-radius: 999px;
+            background: var(--copper);
+            box-shadow: 0 0 0 1px rgba(240, 179, 94, 0.4);
         }
 
         .timeline-date {
-            color: var(--pastel-purple);
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            color: var(--copper-soft);
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
         }
 
-        .timeline-title {
+        .timeline-card {
+            padding: 1.2rem;
+            border: 1px solid rgba(247, 240, 231, 0.12);
+            border-radius: var(--radius);
+            background: rgba(13, 31, 29, 0.62);
+        }
+
+        .timeline-card h3 {
+            margin-bottom: 0.1rem;
+            font-family: var(--font-display);
             font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--white);
+            letter-spacing: -0.02em;
         }
 
         .timeline-company {
-            color: var(--pastel-blue);
-            font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
+            color: var(--teal-bright);
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
         }
 
-        .timeline-description {
-            color: var(--gray-300);
-            line-height: 1.6;
+        .timeline-card ul {
+            margin: 0;
+            padding-left: 1.1rem;
+            color: var(--muted);
         }
 
-        .cert-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, var(--pastel-orange), var(--accent-green));
-            color: var(--black);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-top: 1rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
+        .timeline-card li + li {
+            margin-top: 0.45rem;
         }
 
-        .cert-badge:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Projects Section */
-        .projects-grid {
+        .skills-board {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .project-card {
-            background: rgba(21, 28, 38, 0.85);
-            border: 1px solid var(--gray-700);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 18px 40px rgba(4, 8, 12, 0.35);
-        }
-
-        .highlight-card {
-            border: 1px solid rgba(45, 226, 230, 0.5);
-            background: linear-gradient(180deg, rgba(21, 28, 38, 0.95), rgba(11, 15, 20, 0.95));
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--pastel-blue), var(--pastel-purple), var(--pastel-pink));
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--gray-600);
-        }
-
-        .project-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-icon.text-icon {
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            padding: 0.35rem 0.7rem;
-            border-radius: 999px;
-            border: 1px solid rgba(45, 226, 230, 0.6);
-            color: var(--pastel-blue);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .project-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--white);
-        }
-
-        .project-description {
-            color: var(--gray-300);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-tag {
-            background: var(--gray-700);
-            border: 1px solid var(--gray-600);
-            color: var(--pastel-blue);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .project-links {
-            display: flex;
+            grid-template-columns: minmax(0, 0.45fr) minmax(0, 0.55fr);
             gap: 1rem;
         }
 
-        .project-link {
-            color: var(--pastel-blue);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .skill-terminal {
+            min-height: 510px;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            border: 1px solid rgba(247, 240, 231, 0.13);
+            border-radius: var(--radius);
+            background: rgba(6, 18, 17, 0.85);
+            overflow: hidden;
         }
 
-        .project-link:hover {
-            color: var(--white);
+        .terminal-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.9rem;
+            border-bottom: 1px solid rgba(247, 240, 231, 0.1);
+            color: var(--subtle);
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
-        /* Contact Section */
+        .terminal-body {
+            padding: 1.2rem;
+            font-family: var(--font-mono);
+            font-size: clamp(0.82rem, 1.2vw, 0.94rem);
+        }
+
+        .terminal-line {
+            display: flex;
+            gap: 0.65rem;
+            margin-bottom: 0.85rem;
+            color: var(--muted);
+        }
+
+        .terminal-prompt {
+            color: var(--copper-soft);
+            font-weight: 800;
+        }
+
+        .terminal-value {
+            color: var(--paper);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card {
+            min-height: 180px;
+            padding: 1rem;
+            border: 1px solid rgba(247, 240, 231, 0.13);
+            border-radius: var(--radius);
+            background: rgba(13, 31, 29, 0.62);
+        }
+
+        .skill-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin-bottom: 0.78rem;
+            font-size: 1rem;
+        }
+
+        .skill-card .tag-row {
+            gap: 0.38rem;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.72fr) minmax(290px, 0.28fr);
+            gap: 1rem;
+        }
+
+        .credential-card,
+        .contact-card {
+            padding: 1.2rem;
+            border: 1px solid rgba(247, 240, 231, 0.13);
+            border-radius: var(--radius);
+            background: rgba(13, 31, 29, 0.62);
+        }
+
+        .credential-card h3,
+        .contact-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.62rem;
+            margin-bottom: 0.62rem;
+            font-family: var(--font-display);
+            letter-spacing: -0.025em;
+        }
+
+        .credential-card p,
+        .contact-card p {
+            color: var(--muted);
+        }
+
+        .credential-card p:last-child,
+        .contact-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .credential-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            padding: 1.1rem 0;
+            border-bottom: 1px solid rgba(247, 240, 231, 0.1);
+        }
+
+        .credential-row:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .credential-row:first-child {
+            padding-top: 0;
+        }
+
+        .credential-row strong {
+            color: var(--paper);
+        }
+
+        .credential-date {
+            color: var(--copper-soft);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
         .contact {
-            background: linear-gradient(180deg, rgba(15, 20, 28, 0.95), rgba(11, 15, 20, 1));
+            padding-bottom: 4rem;
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: minmax(0, 0.8fr) minmax(330px, 0.2fr);
+            gap: 1rem;
         }
 
-        .contact-card {
-            background: rgba(21, 28, 38, 0.85);
-            border: 1px solid var(--gray-700);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
+        .contact-panel {
             position: relative;
+            padding: clamp(1.4rem, 4vw, 3rem);
+            border: 1px solid rgba(247, 240, 231, 0.14);
+            border-radius: var(--radius);
+            background:
+                radial-gradient(circle at 16% 0%, rgba(85, 202, 188, 0.16), transparent 24rem),
+                radial-gradient(circle at 90% 90%, rgba(240, 179, 94, 0.14), transparent 22rem),
+                rgba(13, 31, 29, 0.72);
             overflow: hidden;
-            box-shadow: 0 18px 40px rgba(4, 8, 12, 0.35);
         }
 
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(184, 230, 255, 0.1), transparent);
-            transition: all 0.4s ease;
-            transform: translate(-50%, -50%);
-        }
-
-        .contact-card:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gray-600);
-        }
-
-        .contact-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-title {
-            font-size: 1.2rem;
-            font-weight: 700;
+        .contact-panel h2 {
+            max-width: 12ch;
             margin-bottom: 1rem;
-            color: var(--white);
-            position: relative;
-            z-index: 2;
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 5vw, 5.5rem);
+            line-height: 0.92;
+            letter-spacing: -0.045em;
         }
 
-        .contact-info {
-            color: var(--gray-300);
-            position: relative;
-            z-index: 2;
+        .contact-panel p {
+            max-width: 62ch;
+            color: var(--muted);
+            font-size: 1.08rem;
         }
 
-        .contact-info a {
-            color: var(--pastel-blue);
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.6rem;
+        }
+
+        .contact-stack {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--paper);
+            font-weight: 800;
             text-decoration: none;
-            transition: all 0.3s ease;
         }
 
-        .contact-info a:hover {
-            color: var(--white);
+        .contact-link:hover,
+        .contact-link:focus-visible {
+            color: var(--teal-bright);
+            outline: none;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .section {
-                padding: 4rem 1rem 2rem;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .about-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                left: 0 !important;
-                padding-left: 3rem !important;
-                padding-right: 0 !important;
-            }
-
-            .timeline-dot {
-                left: 12px !important;
-                right: auto !important;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
+        .site-footer {
+            width: min(1420px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 1.5rem 0 2.5rem;
+            border-top: 1px solid rgba(247, 240, 231, 0.12);
+            color: var(--subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
         }
 
-        /* Scroll reveal animation */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+            transform: translateY(18px);
+            transition: opacity 700ms ease, transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: calc(var(--delay, 0) * 80ms);
         }
 
-        .reveal.active {
+        .reveal.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        @keyframes pulse-ring {
+            0% {
+                box-shadow: 0 0 0 0 rgba(85, 202, 188, 0.42);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(85, 202, 188, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(85, 202, 188, 0);
+            }
         }
 
-        ::-webkit-scrollbar-track {
-            background: var(--gray-800);
+        @keyframes scanner {
+            0%,
+            22% {
+                transform: translateX(-68%);
+                opacity: 0;
+            }
+            42%,
+            65% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(68%);
+                opacity: 0;
+            }
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, var(--pastel-blue), var(--pastel-purple));
-            border-radius: 4px;
+        @keyframes dash-flow {
+            to {
+                stroke-dashoffset: -32;
+            }
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, var(--pastel-purple), var(--pastel-pink));
+        @keyframes orbit {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes marquee {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        @media (max-width: 1120px) {
+            .hero,
+            .story-grid,
+            .projects-layout,
+            .skills-board,
+            .credentials-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .system-panel {
+                min-height: auto;
+            }
+
+            .project-index {
+                position: relative;
+                top: 0;
+            }
+
+            .project-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .project-card,
+            .project-card:nth-child(1),
+            .project-card:nth-child(2),
+            .project-card:nth-child(4),
+            .project-card:nth-child(5) {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .nav {
+                min-height: auto;
+                padding: 0.7rem 0;
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                justify-content: flex-start;
+                overflow-x: auto;
+                border-radius: var(--radius);
+                scrollbar-width: none;
+            }
+
+            .nav-links::-webkit-scrollbar {
+                display: none;
+            }
+
+            .nav-action {
+                display: none;
+            }
+
+            .section,
+            .hero {
+                width: min(100% - 24px, 1420px);
+            }
+
+            .hero {
+                padding-top: 2.4rem;
+            }
+
+            .hero-title,
+            .section-title,
+            .contact-panel h2 {
+                letter-spacing: -0.035em;
+            }
+
+            .hero-meta,
+            .section-heading,
+            .console-strip,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 4.2rem 0;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .credential-row {
+                grid-template-columns: 1fr;
+            }
+
+            .site-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .nav,
+            .hero,
+            .section,
+            .site-footer {
+                width: min(366px, calc(100% - 24px));
+                margin-left: 12px;
+                margin-right: auto;
+            }
+
+            .brand-role,
+            .nav-links .icon {
+                display: none;
+            }
+
+            .nav-links {
+                display: grid;
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+                width: 100%;
+                overflow: visible;
+                gap: 0.14rem;
+                padding: 0.3rem;
+            }
+
+            .nav-links a {
+                justify-content: center;
+                min-height: 2.35rem;
+                padding: 0 0.18rem;
+                font-size: 0.7rem;
+                line-height: 1.15;
+                text-align: center;
+            }
+
+            .system-map {
+                padding: 0.4rem;
+                min-height: 330px;
+            }
+
+            .map-svg {
+                height: 330px;
+            }
+
+            .hero-actions,
+            .contact-actions {
+                display: grid;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 1ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 1ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">LW</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Home Section -->
-    <section id="home" class="section home">
-        <div class="geometric-bg">
-            <div class="geometric-shape shape-1"></div>
-            <div class="geometric-shape shape-2"></div>
-            <div class="geometric-shape shape-3"></div>
-        </div>
-        <div class="hero-content">
-            <div class="status-badge">
-                Recent Focus: MCP Observability + AI Agents
-            </div>
-            <h1 class="hero-title">Lehlohonolo Wessie</h1>
-            <p class="hero-subtitle">Backend Developer | Founder of Dolphin Bou Audio | Co-founder of Lehro Solutions</p>
-            <p class="hero-description">
-                Building cloud-ready backends and modern tooling for audio and AI workflows. Recent LinkedIn activity highlights MCP observability work with Next.js/React dashboards and hardened Node.js services.
-            </p>
-            <div class="focus-pills">
-                <span class="focus-pill">MCP Observability</span>
-                <span class="focus-pill">AI Agents</span>
-                <span class="focus-pill">Next.js 16</span>
-                <span class="focus-pill">React 19</span>
-                <span class="focus-pill">Node.js</span>
-                <span class="focus-pill">Telemetry</span>
-            </div>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                <a href="https://www.linkedin.com/in/lehlohonolo-wessie-0a04b124a" target="_blank" class="btn btn-secondary">View LinkedIn</a>
-            </div>
-        </div>
-    </section>
+    <svg class="icon-sprite" aria-hidden="true">
+        <symbol id="icon-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m8 9-4 3 4 3"></path><path d="m16 9 4 3-4 3"></path><path d="m14 5-4 14"></path>
+        </symbol>
+        <symbol id="icon-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="5" rx="7" ry="3"></ellipse><path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5"></path><path d="M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"></path>
+        </symbol>
+        <symbol id="icon-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17.5 19H8a5 5 0 1 1 1.1-9.9A6.2 6.2 0 0 1 21 12.5 3.5 3.5 0 0 1 17.5 19Z"></path>
+        </symbol>
+        <symbol id="icon-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 22v-3.5a3.1 3.1 0 0 0-.9-2.4c3-.3 6.1-1.5 6.1-6.6a5.1 5.1 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.6s-1.1-.3-3.7 1.4a12.7 12.7 0 0 0-6.8 0C5.6 2 4.5 2.3 4.5 2.3a4.8 4.8 0 0 0-.1 3.6A5.1 5.1 0 0 0 3 9.5c0 5.1 3.1 6.3 6.1 6.6a2.8 2.8 0 0 0-.8 1.8c-.7.3-2.6.8-3.8-1.1 0 0-.7-1.2-2-1.3 0 0-1.3 0-.1.8 0 0 .9.4 1.5 1.9 0 0 .8 2.6 4.4 1.7V22"></path>
+        </symbol>
+        <symbol id="icon-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"></path><path d="M2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle>
+        </symbol>
+        <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path>
+        </symbol>
+        <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.7 19.7 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.7 19.7 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"></path>
+        </symbol>
+        <symbol id="icon-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle>
+        </symbol>
+        <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path>
+        </symbol>
+        <symbol id="icon-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 3h7v7"></path><path d="M10 14 21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path>
+        </symbol>
+        <symbol id="icon-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path><path d="M16 8h2a2 2 0 0 1 2 2v11"></path><path d="M8 7h4"></path><path d="M8 11h4"></path><path d="M8 15h4"></path><path d="M3 21h18"></path>
+        </symbol>
+        <symbol id="icon-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 8V4"></path><rect x="5" y="8" width="14" height="10" rx="3"></rect><path d="M2 14h3"></path><path d="M19 14h3"></path><path d="M9 13h.01"></path><path d="M15 13h.01"></path><path d="M9 18v2h6v-2"></path>
+        </symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-5"></path>
+        </symbol>
+        <symbol id="icon-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path><path d="M8 13h8"></path><path d="M8 17h5"></path>
+        </symbol>
+        <symbol id="icon-certificate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="5"></circle><path d="m8.5 12.4-1.2 8.2 4.7-2.8 4.7 2.8-1.2-8.2"></path>
+        </symbol>
+        <symbol id="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path>
+        </symbol>
+    </svg>
 
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2 class="section-title">About Me</h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-text reveal">
-                    <p>I am a motivated backend developer building cloud-ready services and practical tooling for audio and AI workflows. Recent LinkedIn activity highlights MCP observability work, pairing modern Next.js/React dashboards with hardened Node.js services. I am seeking an associate-level backend development/fullstack developer or a frontend development role to contribute to a dynamic team and enhance my expertise in cloud-based technologies.</p>
-                    <p>I have a Bachelor of Arts in Philosophy from the University of Pretoria (January 2018 - December 2020) and I am also a self-employed freelance graphic designer.</p>
-                    <p>Actively learning backend development tools and frameworks via online platforms, with continued focus on agent observability, MCP tooling, and cloud-native architecture.</p>
-                    <p>Languages: English (fluent).</p>
-                </div>
-                <div class="about-stats reveal">
-                    <div class="stat-card">
-                        <div class="stat-number">7+</div>
-                        <div class="stat-label">Years of Experience</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">1</div>
-                        <div class="stat-label">Certification</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">English</div>
-                        <div class="stat-label">Fluent</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="shell">
+        <header class="site-header">
+            <nav class="nav" aria-label="Primary navigation">
+                <a class="brand" href="#top" aria-label="Lehlohonolo Wessie home">
+                    <span class="brand-mark">LW</span>
+                    <span class="brand-text">
+                        <span class="brand-name">Lehlohonolo Wessie</span>
+                        <span class="brand-role">Backend systems builder</span>
+                    </span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#profile"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg>Profile</a></li>
+                    <li><a href="#opensource"><svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>Open Source</a></li>
+                    <li><a href="#experience"><svg class="icon" aria-hidden="true"><use href="#icon-code"></use></svg>Experience</a></li>
+                    <li><a href="#skills"><svg class="icon" aria-hidden="true"><use href="#icon-database"></use></svg>Skills</a></li>
+                    <li><a href="#contact"><svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>Contact</a></li>
+                </ul>
+                <a class="nav-action" href="./Lehlohonolo%20Wessie-CV%20V3%20Polished.pdf" download>
+                    <svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg>
+                    Download CV
+                </a>
+            </nav>
+        </header>
 
-    <!-- Experience Section -->
-    <section id="experience" class="section experience">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2 class="section-title">Experience</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item reveal">
-                    <div class="timeline-content">
-                        <h3 class="timeline-company">Back End Developer • Self Employed</h3>
-                        <span class="timeline-date">September 2024 - Present</span>
-                        <p class="timeline-description">Built functional websites for myself and my co-founded business, including front-end and back-end development, and created Postgres databases using self-taught and SAP Learning skills.</p>
-                    </div>
-                </div>
-                <div class="timeline-item reveal">
-                    <div class="timeline-content">
-                        <h3 class="timeline-company">Freelance Graphic Designer • Self Employed</h3>
-                        <span class="timeline-date">June 2018 - Present</span>
-                        <p class="timeline-description">Collaborated with diverse clients to create engaging designs—cover arts, logos, custom art pieces, and clothing mock-ups—managing timelines and deliverables, and applying skills to UI/UX design and 3D animations.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section skills">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2 class="section-title">Technical Expertise</h2>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category reveal">
-                    <div class="skill-icon">⚙️</div>
-                    <h3 class="skill-title">Backend Development</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">REST APIs</span>
-                        <span class="skill-tag">Microservices</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">API Design</span>
-                    </div>
-                </div>
-                <div class="skill-category reveal">
-                    <div class="skill-icon">🗄️</div>
-                    <h3 class="skill-title">Database Management</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">NoSQL</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                    </div>
-                </div>
-                <div class="skill-category reveal">
-                    <div class="skill-icon">☁️</div>
-                    <h3 class="skill-title">Cloud Technologies</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">SAP Cloud Platform</span>
-                        <span class="skill-tag">CI/CD</span>
-                        <span class="skill-tag">Observability</span>
-                    </div>
-                </div>
-                <div class="skill-category reveal">
-                    <div class="skill-icon">🗂️</div>
-                    <h3 class="skill-title">Version Control</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub</span>
-                    </div>
-                </div>
-                <div class="skill-category reveal">
-                    <div class="skill-icon">💻</div>
-                    <h3 class="skill-title">Programming Languages</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">C#</span>
-                        <span class="skill-tag">C++</span>
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">.NET</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">HTML</span>
-                    </div>
-                </div>
-                <div class="skill-category reveal">
-                    <div class="skill-icon">🧩</div>
-                    <h3 class="skill-title">Development Frameworks</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Express.js</span>
-                        <span class="skill-tag">SAP CAP</span>
-                        <span class="skill-tag">Vue.js</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Next.js</span>
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">Tailwind CSS</span>
-                    </div>
-                </div>
-                <div class="skill-category reveal">
-                    <div class="skill-icon">🛠️</div>
-                    <h3 class="skill-title">Other Tools</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Jenkins</span>
-                        <span class="skill-tag">Postman</span>
-                    </div>
-                </div>
-                <div class="skill-category reveal">
-                    <div class="skill-icon">🏢</div>
-                    <h3 class="skill-title">AI & Agent Systems</h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">MCP</span>
-                        <span class="skill-tag">Agent Observability</span>
-                        <span class="skill-tag">Telemetry</span>
-                        <span class="skill-tag">Tooling Sandbox</span>
-                        <span class="skill-tag">Rate Limiting</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section projects">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2 class="section-title">Featured Projects</h2>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card reveal highlight-card">
-                    <div class="project-icon text-icon">LEHRO</div>
-                    <h3 class="project-title">Lehro Solutions</h3>
-                    <p class="project-description">
-                        AI-powered business solutions that orchestrate AI agents for customer support, process automation, and analytics—delivering cross-platform experiences for modern teams.
+        <main id="main">
+            <section class="hero" id="top" aria-labelledby="hero-title">
+                <div class="hero-copy-block reveal">
+                    <p class="eyebrow"><span class="pulse-dot" aria-hidden="true"></span>Co-founder of Lehro Solutions</p>
+                    <h1 class="hero-title" id="hero-title">Lehlohonolo <span>Wessie</span></h1>
+                    <p class="hero-copy">
+                        <strong>Backend Developer</strong> building service-oriented systems, AI-enabled business tools, and open-source infrastructure from Johannesburg. Founder of Dolphin Bou Audio and co-founder of Lehro Solutions, with hands-on work across Node.js, SAP CAP, React, PostgreSQL, Docker, and practical DevOps.
                     </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">AI Agents</span>
-                        <span class="tech-tag">Automation</span>
-                        <span class="tech-tag">Analytics</span>
-                        <span class="tech-tag">Cross-Platform</span>
+                    <div class="hero-actions">
+                        <a class="button primary magnetic" href="#opensource">
+                            Explore Lehro builds
+                            <svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                        </a>
+                        <a class="button secondary magnetic" href="https://www.linkedin.com/in/lehlohonolo-wessie-0a04b124a" target="_blank" rel="noreferrer">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-linkedin"></use></svg>
+                            LinkedIn
+                        </a>
+                        <a class="button ghost magnetic" href="https://www.lehrosolutions.tech/" target="_blank" rel="noreferrer">
+                            <svg class="icon" aria-hidden="true"><use href="#icon-external"></use></svg>
+                            Lehro Solutions
+                        </a>
                     </div>
-                    <div class="project-links">
-                        <a href="https://www.lehrosolutions.tech/" target="_blank" class="project-link">Website</a>
-                        <a href="https://www.lehrosolutions.tech/#contact" target="_blank" class="project-link">Schedule Demo</a>
-                    </div>
-                </div>
-                <div class="project-card reveal">
-                    <div class="project-icon text-icon">GIDEVO</div>
-                    <h3 class="project-title">Gidevo API Tool</h3>
-                    <p class="project-description">
-                        CLI for OpenAPI/GraphQL project setup, spec validation, and production-ready SDK generation in TypeScript and Python—with a flexible plugin system.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">OpenAPI</span>
-                        <span class="tech-tag">GraphQL</span>
-                        <span class="tech-tag">TypeScript</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Plugins</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/LehroSolutions/gidevo-api-tool" target="_blank" class="project-link">GitHub</a>
-                        <a href="https://github.com/LehroSolutions/gidevo-api-tool#readme" target="_blank" class="project-link">Docs</a>
-                    </div>
-                </div>
-                <div class="project-card reveal">
-                    <div class="project-icon text-icon">MCP</div>
-                    <h3 class="project-title">MCPSOIDS: MCP Observability</h3>
-                    <p class="project-description">
-                        Recent LinkedIn activity highlights MCPSOIDS, an MCP observability stack with a Next.js 16 + React 19 telemetry dashboard and a hardened Node.js backend featuring sandboxed tools, rate limiting, and automated health governance.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">MCP</span>
-                        <span class="tech-tag">Next.js 16</span>
-                        <span class="tech-tag">React 19</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Observability</span>
+                    <div class="hero-meta" aria-label="Career highlights">
+                        <div class="metric reveal" style="--delay: 1">
+                            <span class="metric-value">2025</span>
+                            <span class="metric-label">Co-founded Lehro Solutions in Gauteng</span>
+                        </div>
+                        <div class="metric reveal" style="--delay: 2">
+                            <span class="metric-value">7+</span>
+                            <span class="metric-label">Open-source and product systems represented</span>
+                        </div>
+                        <div class="metric reveal" style="--delay: 3">
+                            <span class="metric-value">SAP CAP</span>
+                            <span class="metric-label">Certified backend associate focus</span>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card reveal">
-                    <div class="project-icon">📊</div>
-                    <h3 class="project-title">Lehro Solutions Survey</h3>
-                    <p class="project-description">
-                        Built a responsive survey platform deployed on Vercel to collect and analyze user feedback.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Vercel</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://lehro-solutions-survey.vercel.app/" target="_blank" class="project-link">Live Site</a>
-                    </div>
-                </div>
-                <div class="project-card reveal">
-                    <div class="project-icon">🎧</div>
-                    <h3 class="project-title">Dolphin Bou Audio</h3>
-                    <p class="project-description">
-                        Founder and lead developer of Dolphin Bou Audio, an innovative audio technology company. Currently developing a suite of audio processing tools and plugins for music producers and sound designers.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Audio Processing</span>
-                        <span class="tech-tag">C++</span>
-                        <span class="tech-tag">JUCE Framework</span>
-                        <span class="tech-tag">UI/UX Design</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">Website (Coming Soon)</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2 class="section-title">Get In Touch</h2>
+                <aside class="system-panel reveal" aria-label="Lehro Solutions ecosystem visual">
+                    <div class="system-topbar">
+                        <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                        <span class="system-status">Lehro build graph - live portfolio layer</span>
+                    </div>
+                    <div class="system-map">
+                        <svg class="map-svg" viewBox="0 0 700 470" role="img" aria-labelledby="map-title map-desc">
+                            <title id="map-title">Lehro Solutions project system map</title>
+                            <desc id="map-desc">A visual network connecting Lehlohonolo Wessie to open-source Lehro Solutions projects and backend systems.</desc>
+                            <defs>
+                                <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+                                    <feGaussianBlur stdDeviation="4" result="blur"></feGaussianBlur>
+                                    <feMerge>
+                                        <feMergeNode in="blur"></feMergeNode>
+                                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <path class="map-line copper" d="M350 238 C245 128 170 104 82 112"></path>
+                            <path class="map-line" d="M350 238 C444 122 525 94 620 118"></path>
+                            <path class="map-line copper" d="M350 238 C236 272 170 346 104 388"></path>
+                            <path class="map-line" d="M350 238 C450 302 536 350 626 388"></path>
+                            <path class="map-line" d="M350 238 C346 166 348 112 354 58"></path>
+                            <path class="map-line copper" d="M350 238 C350 310 350 360 350 424"></path>
+                            <g class="map-orbit" filter="url(#softGlow)">
+                                <circle cx="350" cy="238" r="112" fill="none" stroke="rgba(85,202,188,0.18)" stroke-dasharray="3 13"></circle>
+                                <circle cx="462" cy="238" r="5" fill="#f0b35e"></circle>
+                            </g>
+                            <g>
+                                <circle class="map-node core" cx="350" cy="238" r="72"></circle>
+                                <text class="map-label" x="350" y="226" text-anchor="middle">LEHLOHONOLO</text>
+                                <text class="map-small" x="350" y="245" text-anchor="middle">BACKEND / AI / OSS</text>
+                                <text class="map-small" x="350" y="262" text-anchor="middle">JOHANNESBURG</text>
+                            </g>
+                            <g>
+                                <circle class="map-node copper" cx="82" cy="112" r="46"></circle>
+                                <text class="map-label" x="82" y="108" text-anchor="middle">BILQUO</text>
+                                <text class="map-small" x="82" y="125" text-anchor="middle">INVOICES</text>
+                            </g>
+                            <g>
+                                <circle class="map-node" cx="620" cy="118" r="50"></circle>
+                                <text class="map-label" x="620" y="112" text-anchor="middle">SUPPORTOID</text>
+                                <text class="map-small" x="620" y="130" text-anchor="middle">SUPPORT STACK</text>
+                            </g>
+                            <g>
+                                <circle class="map-node" cx="104" cy="388" r="52"></circle>
+                                <text class="map-label" x="104" y="383" text-anchor="middle">PDFOID</text>
+                                <text class="map-small" x="104" y="401" text-anchor="middle">LOCAL PDF AI</text>
+                            </g>
+                            <g>
+                                <circle class="map-node copper" cx="626" cy="388" r="52"></circle>
+                                <text class="map-label" x="626" y="383" text-anchor="middle">PAYCONNECT</text>
+                                <text class="map-small" x="626" y="401" text-anchor="middle">PAYMENTS</text>
+                            </g>
+                            <g>
+                                <circle class="map-node" cx="354" cy="58" r="44"></circle>
+                                <text class="map-label" x="354" y="54" text-anchor="middle">MCPSOIDS</text>
+                                <text class="map-small" x="354" y="70" text-anchor="middle">MCP CONTROL</text>
+                            </g>
+                            <g>
+                                <circle class="map-node copper" cx="350" cy="424" r="44"></circle>
+                                <text class="map-label" x="350" y="420" text-anchor="middle">GIDEVO</text>
+                                <text class="map-small" x="350" y="436" text-anchor="middle">SDK TOOLS</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="console-strip">
+                        <div class="console-tile">
+                            <span class="console-kicker">Current signal</span>
+                            <h2 class="console-title">Business software with open-source leverage</h2>
+                            <p class="console-copy">Lehro Solutions combines internal product delivery with reusable public tools for documents, support, payments, compliance, and API generation.</p>
+                        </div>
+                        <div class="console-tile">
+                            <span class="console-kicker">Primary role</span>
+                            <h2 class="console-title">Backend architecture</h2>
+                            <p class="console-copy">APIs, databases, automation, AI agents, and delivery systems built around real operational workflows.</p>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+
+            <div class="marquee" aria-hidden="true">
+                <div class="marquee-track">
+                    <span>Node.js</span><span>SAP CAP</span><span>PostgreSQL</span><span>React</span><span>Docker</span><span>AI agents</span><span>PDF workflows</span><span>OpenAPI tooling</span><span>POPIA scanning</span><span>Payment orchestration</span>
+                    <span>Node.js</span><span>SAP CAP</span><span>PostgreSQL</span><span>React</span><span>Docker</span><span>AI agents</span><span>PDF workflows</span><span>OpenAPI tooling</span><span>POPIA scanning</span><span>Payment orchestration</span>
+                </div>
             </div>
-            <div class="contact-grid">
-                <div class="contact-card reveal">
-                    <div class="contact-icon">📧</div>
-                    <h3 class="contact-title">Email</h3>
-                    <div class="contact-info">
-                        <a href="mailto:sadjiim.673dc@gmail.com">sadjiim.673dc@gmail.com</a>
+
+            <section class="section" id="profile" aria-labelledby="profile-title">
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="section-kicker"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg>Profile</p>
+                        <h2 class="section-title" id="profile-title">Builder with product pressure.</h2>
+                    </div>
+                    <p class="section-lede">The CV gives the foundation: backend developer, SAP CAP certification, founder experience, and full-stack delivery. The portfolio adds the recent Lehro Solutions build layer.</p>
+                </div>
+                <div class="story-grid">
+                    <div class="story-panel reveal">
+                        <p>
+                            I build backend services and operational software with a practical DevOps mindset. My work spans JavaScript and Node.js APIs, service-oriented architecture, PostgreSQL and MongoDB backends, React interfaces, and deployment workflows that keep business systems understandable after launch.
+                        </p>
+                        <p>
+                            As <strong>co-founder of Lehro Solutions</strong>, I help create business automation software and open-source tools for document workflows, customer support, payments, privacy scanning, API generation, and AI-centered operations. I also founded Dolphin Bou Audio and continue to bring design judgment from freelance graphic work into product UI and UX.
+                        </p>
+                        <p>
+                            I am looking for associate-level backend, full-stack, or frontend roles where I can contribute to cloud-based systems while continuing to deepen my architecture, automation, and AI agent delivery skills.
+                        </p>
+                    </div>
+                    <aside class="side-panel reveal" style="--delay: 1" aria-label="Profile facts">
+                        <div class="side-row">
+                            <span class="side-icon"><svg class="icon" aria-hidden="true"><use href="#icon-map"></use></svg></span>
+                            <div>
+                                <h3>Location</h3>
+                                <p>City of Johannesburg, Gauteng, South Africa</p>
+                            </div>
+                        </div>
+                        <div class="side-row">
+                            <span class="side-icon"><svg class="icon" aria-hidden="true"><use href="#icon-code"></use></svg></span>
+                            <div>
+                                <h3>Technical focus</h3>
+                                <p>REST APIs, microservices, SOA, Node.js, Express.js, SAP CAP</p>
+                            </div>
+                        </div>
+                        <div class="side-row">
+                            <span class="side-icon"><svg class="icon" aria-hidden="true"><use href="#icon-bot"></use></svg></span>
+                            <div>
+                                <h3>Business systems</h3>
+                                <p>Ecommerce, HR and payroll automation, database-backed tooling</p>
+                            </div>
+                        </div>
+                        <div class="side-row">
+                            <span class="side-icon"><svg class="icon" aria-hidden="true"><use href="#icon-shield"></use></svg></span>
+                            <div>
+                                <h3>Delivery mindset</h3>
+                                <p>GitHub workflow, Docker, API testing, client delivery, security-aware design</p>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <section class="section" id="opensource" aria-labelledby="opensource-title">
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="section-kicker"><svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>Lehro Solutions open source</p>
+                        <h2 class="section-title" id="opensource-title">Recent systems I helped bring into the open.</h2>
+                    </div>
+                    <p class="section-lede">These projects extend the CV's PDFoid, Gidevo, and MCPSOIDS foundation with the newer Lehro Solutions public ecosystem.</p>
+                </div>
+
+                <div class="projects-layout">
+                    <aside class="project-index reveal" aria-label="Open-source project index">
+                        <h3>Project constellation</h3>
+                        <div class="index-list">
+                            <a class="index-chip" href="#project-bilquo"><span>Bilquo</span><span>01</span></a>
+                            <a class="index-chip" href="#project-supportoid"><span>SupportOID</span><span>02</span></a>
+                            <a class="index-chip" href="#project-payconnectoid"><span>Payconnectoid</span><span>03</span></a>
+                            <a class="index-chip" href="#project-compliancekit"><span>Compliancekit</span><span>04</span></a>
+                            <a class="index-chip" href="#project-pdfoid"><span>PDFoid</span><span>05</span></a>
+                            <a class="index-chip" href="#project-mcpsoids"><span>MCPSOIDS</span><span>06</span></a>
+                            <a class="index-chip" href="#project-gidevo"><span>Gidevo</span><span>07</span></a>
+                        </div>
+                    </aside>
+
+                    <div class="project-grid">
+                        <a class="project-card reveal tilt" id="project-bilquo" href="https://github.com/LehroSolutions/Bilquo_invoice-app" target="_blank" rel="noreferrer">
+                            <div class="project-top">
+                                <span class="project-icon"><svg class="icon" aria-hidden="true"><use href="#icon-file"></use></svg></span>
+                                <span class="project-number">01</span>
+                            </div>
+                            <div>
+                                <h3>Bilquo</h3>
+                                <p>Open-source invoice and quote generator for working teams, with real-time previews, PDF export, templates, branding, multi-currency support, flexible line items, custom tax rates, and automatic totals.</p>
+                                <div class="tag-row"><span class="tag open">Open source</span><span class="tag">Invoices</span><span class="tag">PDF export</span><span class="tag">Templates</span></div>
+                            </div>
+                        </a>
+
+                        <a class="project-card reveal tilt" style="--delay: 1" id="project-supportoid" href="https://github.com/LehroSolutions/supportoid" target="_blank" rel="noreferrer">
+                            <div class="project-top">
+                                <span class="project-icon"><svg class="icon" aria-hidden="true"><use href="#icon-bot"></use></svg></span>
+                                <span class="project-number">02</span>
+                            </div>
+                            <div>
+                                <h3>SupportOID</h3>
+                                <p>Self-hosted customer support stack with FastAPI chat and analytics, a React operator console, CLI diagnostics, typed agent automation, SQLite persistence, redacted traces, and Docker-ready workflows.</p>
+                                <div class="tag-row"><span class="tag open">Apache 2.0</span><span class="tag">FastAPI</span><span class="tag">React</span></div>
+                            </div>
+                        </a>
+
+                        <a class="project-card reveal tilt" style="--delay: 2" id="project-payconnectoid" href="https://github.com/LehroSolutions/payconnectiod" target="_blank" rel="noreferrer">
+                            <div class="project-top">
+                                <span class="project-icon"><svg class="icon" aria-hidden="true"><use href="#icon-database"></use></svg></span>
+                                <span class="project-number">03</span>
+                            </div>
+                            <div>
+                                <h3>Payconnectoid</h3>
+                                <p>Open-core payment orchestration with idempotent creation, lifecycle enforcement, Paystack support, webhook dead-letter queues, reconciliation analytics, MCP access, and AI risk scoring.</p>
+                                <div class="tag-row"><span class="tag release">Release</span><span class="tag">Node.js</span><span class="tag">MCP</span><span class="tag">Risk scoring</span></div>
+                            </div>
+                        </a>
+
+                        <a class="project-card reveal tilt" style="--delay: 3" id="project-compliancekit" href="https://github.com/LehroSolutions/compliancekit" target="_blank" rel="noreferrer">
+                            <div class="project-top">
+                                <span class="project-icon"><svg class="icon" aria-hidden="true"><use href="#icon-shield"></use></svg></span>
+                                <span class="project-number">04</span>
+                            </div>
+                            <div>
+                                <h3>Compliancekit</h3>
+                                <p>POPIA-focused privacy toolkit that detects South African ID numbers, phone numbers, passports, bank references, tax IDs, and emails locally with zero cloud dependency.</p>
+                                <div class="tag-row"><span class="tag open">Open source</span><span class="tag">POPIA</span><span class="tag">Local first</span></div>
+                            </div>
+                        </a>
+
+                        <a class="project-card reveal tilt" style="--delay: 4" id="project-pdfoid" href="https://github.com/LehroSolutions/pdfoid" target="_blank" rel="noreferrer">
+                            <div class="project-top">
+                                <span class="project-icon"><svg class="icon" aria-hidden="true"><use href="#icon-file"></use></svg></span>
+                                <span class="project-number">05</span>
+                            </div>
+                            <div>
+                                <h3>PDFoid</h3>
+                                <p>Open-source PDF editor and viewer from the CV, now framed as an AI-centered document system with annotation, transformation, summarization, local processing, and CV generation workflows.</p>
+                                <div class="tag-row"><span class="tag open">Open source</span><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">PDF.js</span></div>
+                            </div>
+                        </a>
+
+                        <a class="project-card reveal tilt" style="--delay: 5" id="project-mcpsoids" href="https://github.com/LehroSolutions/MCPSOIDS" target="_blank" rel="noreferrer">
+                            <div class="project-top">
+                                <span class="project-icon"><svg class="icon" aria-hidden="true"><use href="#icon-cloud"></use></svg></span>
+                                <span class="project-number">06</span>
+                            </div>
+                            <div>
+                                <h3>MCPSOIDS</h3>
+                                <p>Model Context Protocol tooling and control-center work focused on active robustness, policy-aware tool execution, same-origin gateway patterns, auditability, and practical AI operations.</p>
+                                <div class="tag-row"><span class="tag open">Open source</span><span class="tag">MCP</span><span class="tag">AI operations</span></div>
+                            </div>
+                        </a>
+
+                        <a class="project-card reveal tilt" style="--delay: 6" id="project-gidevo" href="https://github.com/LehroSolutions/gidevo-api-tool" target="_blank" rel="noreferrer">
+                            <div class="project-top">
+                                <span class="project-icon"><svg class="icon" aria-hidden="true"><use href="#icon-code"></use></svg></span>
+                                <span class="project-number">07</span>
+                            </div>
+                            <div>
+                                <h3>Gidevo API Tool</h3>
+                                <p>Open-source API toolkit from the CV for project setup, spec validation, plugin-oriented integration, and SDK generation from OpenAPI specs across Go, TypeScript, and Python workflows.</p>
+                                <div class="tag-row"><span class="tag open">Open source</span><span class="tag">OpenAPI</span><span class="tag">SDK generation</span></div>
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div class="contact-card reveal">
-                    <div class="contact-icon">💼</div>
-                    <h3 class="contact-title">LinkedIn</h3>
-                    <div class="contact-info">
-                        <a href="https://www.linkedin.com/in/lehlohonolo-wessie-0a04b124a" target="_blank">linkedin.com/in/lehlohonolo-wessie</a>
+            </section>
+
+            <section class="section" id="experience" aria-labelledby="experience-title">
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="section-kicker"><svg class="icon" aria-hidden="true"><use href="#icon-code"></use></svg>Experience</p>
+                        <h2 class="section-title" id="experience-title">From freelance craft to company architecture.</h2>
+                    </div>
+                    <p class="section-lede">Timeline content follows the updated CV, with the Lehro Solutions co-founder work made more visible.</p>
+                </div>
+
+                <div class="timeline">
+                    <article class="timeline-item reveal">
+                        <div class="timeline-date">February 2025 - Present</div>
+                        <div class="timeline-card">
+                            <h3>Co-Founder</h3>
+                            <p class="timeline-company">Lehro Solutions | Gauteng, South Africa</p>
+                            <ul>
+                                <li>Co-founded a technology solutions company focused on software delivery for business operations.</li>
+                                <li>Lead backend architecture and implementation for client applications.</li>
+                                <li>Collaborate on product strategy, scalable implementation, and cross-industry delivery.</li>
+                                <li>Helped create and shape public Lehro Solutions tools across documents, payments, privacy scanning, support, MCP, and API generation.</li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="timeline-item reveal" style="--delay: 1">
+                        <div class="timeline-date">September 2024 - Present</div>
+                        <div class="timeline-card">
+                            <h3>Backend Developer</h3>
+                            <p class="timeline-company">Self Employed | South Africa</p>
+                            <ul>
+                                <li>Built full-stack web applications for personal, client, and co-founded business projects.</li>
+                                <li>Delivered an ecommerce platform and supported client brand styling with a small team.</li>
+                                <li>Developed an AI-enabled HR and payroll system as part of a co-founded AI suite.</li>
+                                <li>Designed and managed PostgreSQL databases for application backends.</li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="timeline-item reveal" style="--delay: 2">
+                        <div class="timeline-date">June 2018 - Present</div>
+                        <div class="timeline-card">
+                            <h3>Freelance Graphic Designer</h3>
+                            <p class="timeline-company">Self Employed | South Africa</p>
+                            <ul>
+                                <li>Created cover art, logos, custom art pieces, and clothing mockups for diverse clients.</li>
+                                <li>Managed project timelines and deliverables to keep outcomes timely and polished.</li>
+                                <li>Expanded design experience into UI/UX design and 3D animation for digital products.</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section" id="skills" aria-labelledby="skills-title">
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="section-kicker"><svg class="icon" aria-hidden="true"><use href="#icon-database"></use></svg>Capability matrix</p>
+                        <h2 class="section-title" id="skills-title">Practical backend depth with product instincts.</h2>
+                    </div>
+                    <p class="section-lede">Pulled from the updated CV and reorganized for scanning: backend, data, cloud delivery, frontend, design, and languages.</p>
+                </div>
+
+                <div class="skills-board">
+                    <div class="skill-terminal reveal" aria-label="Technical focus terminal">
+                        <div class="terminal-head">
+                            <span>cv.focus</span>
+                            <span>v3</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="terminal-line"><span class="terminal-prompt">$</span><span>role = <span class="terminal-value">"Backend Developer"</span></span></div>
+                            <div class="terminal-line"><span class="terminal-prompt">$</span><span>company = <span class="terminal-value">"Lehro Solutions"</span></span></div>
+                            <div class="terminal-line"><span class="terminal-prompt">$</span><span>architecture = <span class="terminal-value">["REST APIs", "Microservices", "SOA", "SAP CAP"]</span></span></div>
+                            <div class="terminal-line"><span class="terminal-prompt">$</span><span>delivery = <span class="terminal-value">["Docker", "GitHub", "Jenkins", "Postman"]</span></span></div>
+                            <div class="terminal-line"><span class="terminal-prompt">$</span><span>systems = <span class="terminal-value">["Ecommerce", "HR/payroll", "Documents", "Support", "Payments"]</span></span></div>
+                            <div class="terminal-line"><span class="terminal-prompt">$</span><span>learning = <span class="terminal-value">"AI agents, LLMs, cloud computing, backend frameworks"</span></span></div>
+                        </div>
+                    </div>
+
+                    <div class="skills-grid">
+                        <article class="skill-card reveal" style="--delay: 1">
+                            <h3><svg class="icon" aria-hidden="true"><use href="#icon-code"></use></svg>Backend</h3>
+                            <div class="tag-row"><span class="tag">Node.js</span><span class="tag">REST APIs</span><span class="tag">Microservices</span><span class="tag">SOA</span><span class="tag">Express.js</span><span class="tag">SAP CAP</span></div>
+                        </article>
+                        <article class="skill-card reveal" style="--delay: 2">
+                            <h3><svg class="icon" aria-hidden="true"><use href="#icon-database"></use></svg>Data</h3>
+                            <div class="tag-row"><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">SQL</span><span class="tag">NoSQL</span><span class="tag">Database design</span></div>
+                        </article>
+                        <article class="skill-card reveal" style="--delay: 3">
+                            <h3><svg class="icon" aria-hidden="true"><use href="#icon-cloud"></use></svg>Cloud and DevOps</h3>
+                            <div class="tag-row"><span class="tag">SAP Cloud Platform</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Docker</span><span class="tag">Jenkins</span><span class="tag">Postman</span></div>
+                        </article>
+                        <article class="skill-card reveal" style="--delay: 4">
+                            <h3><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg>Frontend and Design</h3>
+                            <div class="tag-row"><span class="tag">React</span><span class="tag">React Native</span><span class="tag">Vue.js</span><span class="tag">TypeScript</span><span class="tag">UI/UX</span><span class="tag">3D animation</span></div>
+                        </article>
+                        <article class="skill-card reveal" style="--delay: 5">
+                            <h3><svg class="icon" aria-hidden="true"><use href="#icon-file"></use></svg>Languages</h3>
+                            <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">Java</span><span class="tag">Python</span><span class="tag">C#</span><span class="tag">C++</span><span class="tag">.NET</span><span class="tag">English fluent</span></div>
+                        </article>
+                        <article class="skill-card reveal" style="--delay: 6">
+                            <h3><svg class="icon" aria-hidden="true"><use href="#icon-bot"></use></svg>AI and Automation</h3>
+                            <div class="tag-row"><span class="tag">AI agents</span><span class="tag">LLMs</span><span class="tag">MCP</span><span class="tag">Payroll systems</span><span class="tag">Document workflows</span></div>
+                        </article>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
+
+            <section class="section" id="credentials" aria-labelledby="credentials-title">
+                <div class="section-heading reveal">
+                    <div>
+                        <p class="section-kicker"><svg class="icon" aria-hidden="true"><use href="#icon-certificate"></use></svg>Credentials</p>
+                        <h2 class="section-title" id="credentials-title">Certified, self-directed, and still learning.</h2>
+                    </div>
+                    <p class="section-lede">The formal CV remains available as a PDF; this site is the interactive layer around it.</p>
+                </div>
+                <div class="credentials-grid">
+                    <div class="credential-card reveal">
+                        <div class="credential-row">
+                            <div>
+                                <strong>SAP Certified Associate - Backend Developer (SAP CAP)</strong>
+                                <p>Mastered SAP Cloud Application Programming Model concepts for scalable cloud solutions and backend development in SAP environments with JavaScript, Node.js, and SOA.</p>
+                            </div>
+                            <span class="credential-date">September 2024</span>
+                        </div>
+                        <div class="credential-row">
+                            <div>
+                                <strong>Bachelor of Arts - Philosophy</strong>
+                                <p>University of Pretoria (Universiteit van Pretoria).</p>
+                            </div>
+                            <span class="credential-date">2018 - 2020</span>
+                        </div>
+                        <div class="credential-row">
+                            <div>
+                                <strong>Professional development</strong>
+                                <p>Continuous learning through online platforms and workshops on cloud computing, backend development, AI agents, and LLMs.</p>
+                            </div>
+                            <span class="credential-date">Ongoing</span>
+                        </div>
+                    </div>
+                    <aside class="contact-card reveal" style="--delay: 1">
+                        <h3><svg class="icon" aria-hidden="true"><use href="#icon-download"></use></svg>CV source</h3>
+                        <p>Updated CV Version 3 is stored in the site assets as a two-page PDF.</p>
+                        <a class="button secondary magnetic" href="./Lehlohonolo%20Wessie-CV%20V3%20Polished.pdf" download>
+                            Download polished PDF
+                            <svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                        </a>
+                    </aside>
+                </div>
+            </section>
+
+            <section class="section contact" id="contact" aria-labelledby="contact-title">
+                <div class="contact-grid">
+                    <div class="contact-panel reveal">
+                        <p class="section-kicker"><svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>Contact</p>
+                        <h2 id="contact-title">Let the work speak first.</h2>
+                        <p>For backend, full-stack, frontend, or product engineering opportunities, reach me directly or review the Lehro Solutions ecosystem and public projects.</p>
+                        <div class="contact-actions">
+                            <a class="button primary magnetic" href="mailto:sadjiim.673dc@gmail.com">
+                                <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>
+                                Email me
+                            </a>
+                            <button class="button secondary magnetic" type="button" data-copy-email="sadjiim.673dc@gmail.com">
+                                Copy email
+                                <svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>
+                            </button>
+                            <a class="button ghost magnetic" href="tel:+27825082517">
+                                <svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>
+                                Call
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-stack">
+                        <article class="contact-card reveal" style="--delay: 1">
+                            <h3><svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg>Email</h3>
+                            <p><a class="contact-link" href="mailto:sadjiim.673dc@gmail.com">sadjiim.673dc@gmail.com</a></p>
+                        </article>
+                        <article class="contact-card reveal" style="--delay: 2">
+                            <h3><svg class="icon" aria-hidden="true"><use href="#icon-phone"></use></svg>Phone</h3>
+                            <p><a class="contact-link" href="tel:+27825082517">082 508 2517</a></p>
+                        </article>
+                        <article class="contact-card reveal" style="--delay: 3">
+                            <h3><svg class="icon" aria-hidden="true"><use href="#icon-linkedin"></use></svg>LinkedIn</h3>
+                            <p><a class="contact-link" href="https://www.linkedin.com/in/lehlohonolo-wessie-0a04b124a" target="_blank" rel="noreferrer">linkedin.com/in/lehlohonolo-wessie-0a04b124a</a></p>
+                        </article>
+                        <article class="contact-card reveal" style="--delay: 4">
+                            <h3><svg class="icon" aria-hidden="true"><use href="#icon-map"></use></svg>Location</h3>
+                            <p>City of Johannesburg, Gauteng, South Africa</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <span>Lehlohonolo Wessie - Backend Developer - CV Version 3 web edition</span>
+            <span>Built around Lehro Solutions open-source systems</span>
+        </footer>
+    </div>
 
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        const revealItems = document.querySelectorAll(".reveal");
+        if (prefersReducedMotion) {
+            revealItems.forEach((item) => item.classList.add("is-visible"));
+        } else {
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+            revealItems.forEach((item) => revealObserver.observe(item));
+        }
+
+        const navLinks = Array.from(document.querySelectorAll(".nav-links a"));
+        const sections = navLinks
+            .map((link) => document.querySelector(link.getAttribute("href")))
+            .filter(Boolean);
+
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                navLinks.forEach((link) => {
+                    link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
                 });
             });
+        }, { threshold: 0.28, rootMargin: "-20% 0px -50% 0px" });
+
+        sections.forEach((section) => navObserver.observe(section));
+
+        document.querySelectorAll(".magnetic").forEach((button) => {
+            button.addEventListener("pointermove", (event) => {
+                if (prefersReducedMotion) return;
+                const rect = button.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                const moveX = (x - rect.width / 2) / 16;
+                const moveY = (y - rect.height / 2) / 16;
+                button.style.setProperty("--mx", `${moveX}px`);
+                button.style.setProperty("--my", `${moveY}px`);
+                button.style.setProperty("--spot-x", `${x}px`);
+                button.style.setProperty("--spot-y", `${y}px`);
+            });
+
+            button.addEventListener("pointerleave", () => {
+                button.style.setProperty("--mx", "0px");
+                button.style.setProperty("--my", "0px");
+            });
         });
 
-        // Scroll reveal animation
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => {
-            const windowHeight = window.innerHeight;
-            revealElements.forEach(el => {
-                const elementTop = el.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
-                    el.classList.add('active');
+        document.querySelectorAll(".tilt").forEach((card) => {
+            card.addEventListener("pointermove", (event) => {
+                if (prefersReducedMotion) return;
+                const rect = card.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                const ry = ((x / rect.width) - 0.5) * 5;
+                const rx = -((y / rect.height) - 0.5) * 5;
+                card.style.setProperty("--spot-x", `${x}px`);
+                card.style.setProperty("--spot-y", `${y}px`);
+                card.style.setProperty("--rx", `${rx}deg`);
+                card.style.setProperty("--ry", `${ry}deg`);
+            });
+
+            card.addEventListener("pointerleave", () => {
+                card.style.setProperty("--rx", "0deg");
+                card.style.setProperty("--ry", "0deg");
+            });
+        });
+
+        const copyButton = document.querySelector("[data-copy-email]");
+        if (copyButton) {
+            const originalLabel = copyButton.innerHTML;
+            copyButton.addEventListener("click", async () => {
+                const email = copyButton.getAttribute("data-copy-email");
+                try {
+                    await navigator.clipboard.writeText(email);
+                    copyButton.innerHTML = "Email copied <svg class=\"icon\" aria-hidden=\"true\"><use href=\"#icon-arrow\"></use></svg>";
+                    copyButton.setAttribute("aria-live", "polite");
+                    window.setTimeout(() => {
+                        copyButton.innerHTML = originalLabel;
+                    }, 1800);
+                } catch (error) {
+                    window.location.href = `mailto:${email}`;
                 }
             });
-        };
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Initial check
-
-        // Navbar shrink on scroll
-        const navbar = document.querySelector('.navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.style.padding = '0.5rem 0';
-                navbar.style.background = 'rgba(11, 15, 20, 0.95)';
-            } else {
-                navbar.style.padding = '1rem 0';
-                navbar.style.background = 'rgba(11, 15, 20, 0.85)';
-            }
-        });
+        }
     </script>
 </body>
 </html>
