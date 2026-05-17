@@ -1,26 +1,127 @@
-name: Deploy Pages
+name: Validate and Deploy Pages
 
 on:
   push:
     branches:
       - main
+      - master
+    paths:
+      - "docs/**"
+      - ".github/workflows/pages.yml"
+  pull_request:
+    branches:
+      - main
+      - master
+    paths:
+      - "docs/**"
+      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  validate:
+    name: Validate static site
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate docs artifact
+        shell: python
+        run: |
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import re
+          import sys
+
+          docs_dir = Path("docs")
+          html_path = docs_dir / "index.html"
+          cv_path = docs_dir / "Lehlohonolo Wessie-CV V3 Polished.pdf"
+
+          failures = []
+          if not docs_dir.is_dir():
+              failures.append("docs directory is missing")
+          if not html_path.is_file():
+              failures.append("docs/index.html is missing")
+          if not cv_path.is_file():
+              failures.append("updated CV PDF is missing from docs")
+
+          if html_path.is_file():
+              html = html_path.read_text(encoding="utf-8")
+              try:
+                  HTMLParser().feed(html)
+              except Exception as exc:
+                  failures.append(f"docs/index.html is not parseable HTML: {exc}")
+
+              required_text = [
+                  "Lehlohonolo Wessie",
+                  "Co-founder of Lehro Solutions",
+                  "Bilquo",
+                  "SupportOID",
+                  "Payconnectoid",
+                  "Compliancekit",
+                  "PDFoid",
+                  "MCPSOIDS",
+                  "Gidevo API Tool",
+              ]
+              for text in required_text:
+                  if text not in html:
+                      failures.append(f"missing required page content: {text}")
+
+              required_links = [
+                  "./Lehlohonolo%20Wessie-CV%20V3%20Polished.pdf",
+                  "https://www.lehrosolutions.tech/",
+                  "https://github.com/LehroSolutions/Bilquo_invoice-app",
+                  "https://github.com/LehroSolutions/supportoid",
+                  "https://github.com/LehroSolutions/payconnectiod",
+                  "https://github.com/LehroSolutions/compliancekit",
+                  "https://github.com/LehroSolutions/pdfoid",
+                  "https://github.com/LehroSolutions/MCPSOIDS",
+                  "https://github.com/LehroSolutions/gidevo-api-tool",
+              ]
+              for link in required_links:
+                  if link not in html:
+                      failures.append(f"missing required link: {link}")
+
+              non_ascii = sum(ord(char) > 127 for char in html)
+              if non_ascii:
+                  failures.append(f"docs/index.html contains {non_ascii} non-ASCII characters")
+
+              if any(ord(char) > 0x1F000 for char in html):
+                  failures.append("docs/index.html appears to contain emoji characters")
+
+              scripts = re.findall(r"<script>([\s\S]*?)</script>", html)
+              if not scripts:
+                  failures.append("docs/index.html does not contain the expected inline script")
+
+          if failures:
+              print("Static site validation failed:")
+              for failure in failures:
+                  print(f"- {failure}")
+              sys.exit(1)
+
+          print("Static site validation passed.")
+
   deploy:
+    name: Deploy to GitHub Pages
+    needs: validate
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,6 +133,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs
+          retention-days: 7
 
       - name: Deploy to GitHub Pages
         id: deployment
